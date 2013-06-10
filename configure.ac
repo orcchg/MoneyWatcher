@@ -8,6 +8,7 @@ AC_CANONICAL_HOST
 AC_CANONICAL_SYSTEM
 
 AC_CONFIG_HEADERS([config.h])
+AC_CONFIG_FILES([Makefile])
 
 AC_GNU_SOURCE
 AC_C_BIGENDIAN
@@ -46,10 +47,10 @@ PKG_PROG_PKG_CONFIG
 EMBEDDED_LIBS=
 
 dnl Check for EFL libraries  
-PKG_CHECK_MODULES([EINA], [eina >= 1.2.0])       
-PKG_CHECK_MODULES([ECORE], [ecore >= 1.2.0])
-PKG_CHECK_MODULES([ECOREX], [ecore-x >= 1.2.0])
-PKG_CHECK_MODULES([EDJE], [edje >= 1.2.0])     
-PKG_CHECK_MODULES([ELEMENTARY], [elementary >= 1.0])
+#PKG_CHECK_MODULES([EINA], [eina >= 1.2.0])       
+#PKG_CHECK_MODULES([ECORE], [ecore >= 1.2.0])
+#PKG_CHECK_MODULES([ECOREX], [ecore-x >= 1.2.0])
+#PKG_CHECK_MODULES([EDJE], [edje >= 1.2.0])     
+#PKG_CHECK_MODULES([ELEMENTARY], [elementary >= 1.0])
 
 
