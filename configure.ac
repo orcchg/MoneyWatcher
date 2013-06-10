@@ -2,6 +2,7 @@ dnl Process this file with autoconf to produce a configure script.
 
 AC_INIT(moneywatch, 1.0)
 AC_PREREQ(2.68)
+AM_INIT_AUTOMAKE
 AC_CONFIG_SRCDIR([configure.ac])
 AC_CANONICAL_BUILD
 AC_CANONICAL_HOST
@@ -53,4 +54,4 @@ dnl Check for EFL libraries
 #PKG_CHECK_MODULES([EDJE], [edje >= 1.2.0])     
 #PKG_CHECK_MODULES([ELEMENTARY], [elementary >= 1.0])
 
-
+AC_OUTPUT
