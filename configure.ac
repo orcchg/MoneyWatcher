@@ -45,9 +45,6 @@ dnl Enable pkg-config
 PKG_PROG_PKG_CONFIG    
 EMBEDDED_LIBS=
 
-dnl Check Zlib
-PKG_CHECK_MODULES([ZLIB], [zlib >= 1.2.3])  
-
 dnl Check for EFL libraries  
 PKG_CHECK_MODULES([EINA], [eina >= 1.2.0])       
 PKG_CHECK_MODULES([ECORE], [ecore >= 1.2.0])
