@@ -1,3 +1,3 @@
 bin_PROGRAMS =  moneywatcher
 
-moneywatcher_SOURCES = mainc.cpp money.cpp time.cpp database.cpp entry.cpp record.cpp
+moneywatcher_SOURCES = main.cpp money.cpp time.cpp database.cpp entry.cpp record.cpp

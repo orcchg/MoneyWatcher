@@ -9,13 +9,14 @@ AC_CANONICAL_HOST
 AC_CANONICAL_SYSTEM
 
 AC_CONFIG_HEADERS([config.h])
-AC_CONFIG_FILES([Makefile])
+AC_CONFIG_FILES([Makefile src/Makefile])
 
 AC_GNU_SOURCE
 AC_C_BIGENDIAN
 AC_PROG_CXX
 AC_PROG_CC
 AC_HEADER_STDC
+AC_SUBST([AM_CXXFLAGS], [-std=c++11])
 
 dnl Initialize automake
 AM_INIT_AUTOMAKE([1.11 dist-xz foreign color-tests])
@@ -53,5 +54,8 @@ dnl Check for EFL libraries
 #PKG_CHECK_MODULES([ECOREX], [ecore-x >= 1.2.0])
 #PKG_CHECK_MODULES([EDJE], [edje >= 1.2.0])     
 #PKG_CHECK_MODULES([ELEMENTARY], [elementary >= 1.0])
+
+dnl Check for Boost
+#PKG_CHECK_MODULES([BOOST], [boost >= 1.53.0])
 
 AC_OUTPUT
