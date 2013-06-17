@@ -19,7 +19,6 @@ Record::Record(const Money& money,
   , _bs(bs)
   , _comment(comment)
   , _isEmpty(false) {
-  _order = _convert_time_to_order(_time);
 }
 
 Record::Record(bool isEmpty)
@@ -27,8 +26,7 @@ Record::Record(bool isEmpty)
   , _time(Time())
   , _bs(BS_UNKNOWN)
   , _comment("")
-  , _isEmpty(true)
-  , _order(RecordOrder_type()) {
+  , _isEmpty(true) {
 }
 
 /* Getters */
@@ -47,10 +45,6 @@ Record::BalanceStatus Record::get_status() const {
 
 std::string Record::get_comment() const {
   return _comment;
-}
-
-RecordOrder_type Record::get_order() const {
-  return _order;
 }
 
 bool Record::empty() const {
@@ -77,9 +71,5 @@ void Record::set_comment(const std::string& comment) {
 
 /* Private members */
 // --------------------------------------------------------------------------------------------------------------------
-RecordOrder_type Record::_convert_time_to_order(const Time& time) const {
-  //
-  return RecordOrder_type();
-}
 
 }  // namespace mw

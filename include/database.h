@@ -9,6 +9,7 @@
 #define DATABASE_H_
 
 #include <map>
+#include <memory>
 #include "entry.h"
 
 
@@ -16,13 +17,17 @@ namespace mw {
 
 class Database {
 public:
-  void add_entry(const Entry& entry);
-  Entry get_entry(const std::string& name) const;
+  virtual ~Database();
+
+  void add_entry(Entry* entry);
+  Entry* get_entry(const std::string& name) const;
+
+  size_t size() const;
 
   void list() const;
 
 private:
-  std::map<std::string, Entry> _database;
+  std::map<std::string, std::shared_ptr<Entry> > _database;
 };
 
 }  // namespace mw

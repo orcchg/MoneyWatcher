@@ -22,6 +22,7 @@ Time::Time()
 	throw ExceptionTime("Error during date processing!");
   }
   _dayMonthYearWeekday = oss.str();
+  oss.str("");
   oss.flush();
   oss.clear();
   oss << _time.time_of_day().hours() << ":"
@@ -31,6 +32,7 @@ Time::Time()
   	throw ExceptionTime("Error during time of day processing!");
   }
   _hoursMinutesSeconds = oss.str();
+  oss.str("");
   oss.flush();
   oss.clear();
 }
@@ -41,6 +43,18 @@ std::string Time::get_date() const {
 
 std::string Time::get_time() const {
   return _hoursMinutesSeconds;
+}
+
+bool Time::operator < (const Time& rhs) const {
+  return _time < rhs._time;
+}
+
+bool Time::operator == (const Time& rhs) const {
+  return _time == rhs._time;
+}
+
+bool Time::operator != (const Time& rhs) const {
+  return !(*this == rhs);
 }
 
 }  // namespace mw

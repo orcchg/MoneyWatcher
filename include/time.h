@@ -25,6 +25,10 @@ public:
   std::string get_date() const;
   std::string get_time() const;
 
+  bool operator < (const Time& rhs) const;
+  bool operator == (const Time& rhs) const;
+  bool operator != (const Time& rhs) const;
+
   // --------------------------------------------
   class ExceptionTime {
   public:

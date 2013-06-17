@@ -9,6 +9,7 @@
 #define ENTRY_H_
 
 #include <map>
+#include <memory>
 #include <string>
 #include "money.h"
 #include "record.h"
@@ -23,16 +24,18 @@ public:
 		const Money& money = Money(),
 		const Time& time = Time());
   Entry(bool isEmpty);
+  virtual ~Entry();
 
-  std::string get_name() const;
+  std::string name() const;
   Money get_balance_money() const;
   Time get_time() const;
-  Record get_record(const RecordOrder_type& order) const;
-  Record get_last_record() const;
+  Record* get_record(const Time& time) const;
+  Record* get_last_record() const;
+  size_t size() const;
 
   bool empty() const;
 
-  void add_record(const Record& record);
+  void add_record(Record* record);
   void set_name(const std::string& name);
 
   void list() const;
@@ -42,7 +45,7 @@ private:
   Money _money;
   Time _time;
   bool _isEmpty;
-  std::map<RecordOrder_type, Record> _records;
+  std::multimap<Time, std::shared_ptr<Record> > _records;
 
   void _set_balance_money();
   void _set_time();

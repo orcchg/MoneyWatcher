@@ -6,6 +6,7 @@
  */
 
 #include <iostream>
+#include <utility>
 #include "include/entry.h"
 
 
@@ -27,9 +28,12 @@ Entry::Entry(bool isEmpty)
   , _isEmpty(true) {
 }
 
+Entry::~Entry() {
+}
+
 /* Getters */
 // ----------------------------------------------
-std::string Entry::get_name() const {
+std::string Entry::name() const {
   return _name;
 }
 
@@ -41,19 +45,23 @@ Time Entry::get_time() const {
   return _time;
 }
 
-Record Entry::get_record(const RecordOrder_type& order) const {
-  auto it = _records.find(order);
+Record* Entry::get_record(const Time& time) const {
+  auto it = _records.find(time);
   if (it != _records.end()) {
-	  return it->second;
+	  return it->second.get();
   }
-  return Record(true);  // empty Record
+  return NULL;  // empty Record
 }
 
-Record Entry::get_last_record() const {
+Record* Entry::get_last_record() const {
   if (!_records.empty()) {
-	  return (--_records.end())->second;
+	  return (--_records.end())->second.get();
   }
-  return Record(true);  // empty Record
+  return NULL;  // empty Record
+}
+
+size_t Entry::size() const {
+  return _records.size();
 }
 
 bool Entry::empty() const {
@@ -62,8 +70,8 @@ bool Entry::empty() const {
 
 /* Setters */
 // ----------------------------------------------
-void Entry::add_record(const Record& record) {
-  _records[record.get_order()] = record;
+void Entry::add_record(Record* record) {
+  _records.insert(std::pair<Time, std::shared_ptr<Record> >(record->get_time(), std::shared_ptr<Record>(record)));
 }
 
 void Entry::set_name(const std::string& name) {
@@ -71,23 +79,24 @@ void Entry::set_name(const std::string& name) {
 }
 
 void Entry::list() const {
+  std::cout << "Entry size: " << size() << std::endl;
   for (auto it = _records.begin(); it != _records.end(); ++it) {
-    std::cout << "time: " << it->second.get_time().get_time() << ";  date: "
-              << it->second.get_time().get_date() << ";  money: "
-              << it->second.get_money() << " " << it->second.get_status() << std::endl;
+    std::cout << "time: " << it->second->get_time().get_time() << ";  date: "
+              << it->second->get_time().get_date() << ";  money: "
+              << it->second->get_money() << " " << it->second->get_status() << std::endl;
   }
 }
 
 /* Private members */
 // --------------------------------------------------------------------------------------------------------------------
 void Entry::_set_balance_money() {
-  Record record = get_last_record();
-  switch (record.get_status()) {
+  Record* record = get_last_record();
+  switch (record->get_status()) {
   case Record::BS_INCOME:
-	  _money += record.get_money();
+	  _money += record->get_money();
 	  break;
   case Record::BS_EXPENSE:
-	  _money -= record.get_money();
+	  _money -= record->get_money();
 	  break;
   default:
 	  break;
@@ -95,7 +104,7 @@ void Entry::_set_balance_money() {
 }
 
 void Entry::_set_time() {
-  _time = get_last_record().get_time();
+  _time = get_last_record()->get_time();
 }
 
 }  // namespace mw

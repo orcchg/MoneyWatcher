@@ -16,8 +16,6 @@
 
 namespace mw {
 
-typedef std::int32_t RecordOrder_type;
-
 class Record {
 public:
   enum BalanceStatus { BS_UNKNOWN = -1, BS_INCOME = 0, BS_EXPENSE = 1 };
@@ -32,7 +30,6 @@ public:
   Time get_time() const;
   BalanceStatus get_status() const;
   std::string get_comment() const;
-  RecordOrder_type get_order() const;
 
   bool empty() const;
 
@@ -47,9 +44,6 @@ private:
   BalanceStatus _bs;
   std::string _comment;
   bool _isEmpty;
-  RecordOrder_type _order;
-
-  RecordOrder_type _convert_time_to_order(const Time& time) const;
 };
 
 }  // namespace mw
