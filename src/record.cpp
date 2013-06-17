@@ -13,9 +13,9 @@ namespace mw {
 Record::Record(const Money& money,
 			   const BalanceStatus& bs,
 			   const std::string& comment,
-			   const Time& time)
+			   const DateTime& datetime)
   : _money(money)
-  , _time(time)
+  , _datetime(datetime)
   , _bs(bs)
   , _comment(comment)
   , _isEmpty(false) {
@@ -23,7 +23,7 @@ Record::Record(const Money& money,
 
 Record::Record(bool isEmpty)
   : _money(Money())
-  , _time(Time())
+  , _datetime(DateTime())
   , _bs(BS_UNKNOWN)
   , _comment("")
   , _isEmpty(true) {
@@ -35,8 +35,8 @@ Money Record::get_money() const {
   return _money;
 }
 
-Time Record::get_time() const {
-  return _time;
+DateTime Record::get_datetime() const {
+  return _datetime;
 }
 
 Record::BalanceStatus Record::get_status() const {
@@ -57,8 +57,8 @@ void Record::set_money(const Money& money) {
   _money = money;
 }
 
-void Record::set_time(const Time& time) {
-  _time = time;
+void Record::set_datetime(const DateTime& datetime) {
+  _datetime = datetime;
 }
 
 void Record::set_status(const Record::BalanceStatus& bs) {

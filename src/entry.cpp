@@ -14,17 +14,17 @@ namespace mw {
 
 Entry::Entry(const std::string& name,
 		     const Money& money,
-		     const Time& time)
+		     const DateTime& datetime)
   : _name(name)
   , _money(money)
-  , _time(time)
+  , _datetime(datetime)
   , _isEmpty(false) {
 }
 
 Entry::Entry(bool isEmpty)
   : _name("")
   , _money(Money())
-  , _time(Time())
+  , _datetime(DateTime())
   , _isEmpty(true) {
 }
 
@@ -41,12 +41,12 @@ Money Entry::get_balance_money() const {
   return _money;
 }
 
-Time Entry::get_time() const {
-  return _time;
+DateTime Entry::get_datetime() const {
+  return _datetime;
 }
 
-Record* Entry::get_record(const Time& time) const {
-  auto it = _records.find(time);
+Record* Entry::get_record(const DateTime& datetime) const {
+  auto it = _records.find(datetime);
   if (it != _records.end()) {
 	  return it->second.get();
   }
@@ -71,7 +71,7 @@ bool Entry::empty() const {
 /* Setters */
 // ----------------------------------------------
 void Entry::add_record(Record* record) {
-  _records.insert(std::pair<Time, std::shared_ptr<Record> >(record->get_time(), std::shared_ptr<Record>(record)));
+  _records.insert(std::pair<DateTime, std::shared_ptr<Record> >(record->get_datetime(), std::shared_ptr<Record>(record)));
 }
 
 void Entry::set_name(const std::string& name) {
@@ -81,8 +81,8 @@ void Entry::set_name(const std::string& name) {
 void Entry::list() const {
   std::cout << "Entry size: " << size() << std::endl;
   for (auto it = _records.begin(); it != _records.end(); ++it) {
-    std::cout << "time: " << it->second->get_time().get_time() << ";  date: "
-              << it->second->get_time().get_date() << ";  money: "
+    std::cout << "time: " << it->second->get_datetime().get_time() << ";  date: "
+              << it->second->get_datetime().get_date() << ";  money: "
               << it->second->get_money() << " " << it->second->get_status() << std::endl;
   }
 }
@@ -103,8 +103,8 @@ void Entry::_set_balance_money() {
   }
 }
 
-void Entry::_set_time() {
-  _time = get_last_record()->get_time();
+void Entry::_set_datetime() {
+  _datetime = get_last_record()->get_datetime();
 }
 
 }  // namespace mw

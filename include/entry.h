@@ -11,9 +11,9 @@
 #include <map>
 #include <memory>
 #include <string>
-#include "money.h"
-#include "record.h"
-#include "time.h"
+#include "include/money.h"
+#include "include/record.h"
+#include "include/datetime.h"
 
 
 namespace mw {
@@ -22,14 +22,14 @@ class Entry {
 public:
   Entry(const std::string& name = "",
 		const Money& money = Money(),
-		const Time& time = Time());
+		const DateTime& datetime = DateTime());
   Entry(bool isEmpty);
   virtual ~Entry();
 
   std::string name() const;
   Money get_balance_money() const;
-  Time get_time() const;
-  Record* get_record(const Time& time) const;
+  DateTime get_datetime() const;
+  Record* get_record(const DateTime& datetime) const;
   Record* get_last_record() const;
   size_t size() const;
 
@@ -43,12 +43,12 @@ public:
 private:
   std::string _name;
   Money _money;
-  Time _time;
+  DateTime _datetime;
   bool _isEmpty;
-  std::multimap<Time, std::shared_ptr<Record> > _records;
+  std::multimap<DateTime, std::shared_ptr<Record> > _records;
 
   void _set_balance_money();
-  void _set_time();
+  void _set_datetime();
 };
 
 }  // namespace mw
