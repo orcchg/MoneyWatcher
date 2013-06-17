@@ -22,6 +22,8 @@ Record::Record(const Money& money = Money(),
   _order = _convert_time_to_order(_time);
 }
 
+/* Getters */
+// ----------------------------------------------
 inline Money& Record::get_money() const {
   return _money;
 }
@@ -42,6 +44,12 @@ inline RecordOrder_type& Record::get_order() const {
   return _order;
 }
 
+inline bool Record::empty() const {
+  return _isEmpty;
+}
+
+/* Setters */
+// ----------------------------------------------
 inline void Record::set_money(const Money& money) {
   _money = money;
 }

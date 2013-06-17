@@ -20,6 +20,8 @@ Entry::Entry(const std::string& name,
   , _isEmpty(false) {
 }
 
+/* Getters */
+// ----------------------------------------------
 inline std::string& Entry::get_name() const {
   return _name;
 }
@@ -30,10 +32,6 @@ inline Money& Entry::get_balance_money() const {
 
 inline Time& Entry::get_time() const {
   return _time;
-}
-
-inline void Entry::add_record(const Record& record) {
-  _records[record.get_order()] = record;
 }
 
 Record& Entry::get_record(const RecordOrder_type& order) const {
@@ -49,6 +47,16 @@ Record& Entry::get_last_record() const {
 	return *(--_records.end());
   }
   return Record(true);  // empty Record
+}
+
+inline bool Entry::empty() const {
+  return _isEmpty;
+}
+
+/* Setters */
+// ----------------------------------------------
+inline void Entry::add_record(const Record& record) {
+  _records[record.get_order()] = record;
 }
 
 inline void Entry::set_name(const std::string& name) {
