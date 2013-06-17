@@ -10,4 +10,8 @@
 
 namespace mw {
 
+void Cycle::history() const {
+
+}
+
 }  // namespace mw

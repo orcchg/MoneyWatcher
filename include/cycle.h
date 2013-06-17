@@ -10,6 +10,7 @@
 
 #include <list>
 #include <memory>
+#include <string>
 #include "include/database.h"
 #include "include/datetime.h"
 
@@ -17,16 +18,18 @@
 namespace mw {
 
 struct Page {
-  std::shared_ptr<Database> db;
+  std::string name;
   DateTime datetime;
+  std::shared_ptr<Database> db;
 };
 
 class Cycle {
 public:
-
+  void history() const;
 
 private:
-  std::list<Page> l;
+  std::list<Page> _pages;
+  std::list<Page>::iterator _currentPage;
 };
 
 }  // namespace mw
