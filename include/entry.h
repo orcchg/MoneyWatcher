@@ -22,15 +22,18 @@ public:
   Entry(const std::string& name = "",
 		const Money& money = Money(),
 		const Time& time = Time());
+  Entry(bool isEmpty);
 
-  inline std::string& get_name() const;
-  inline Money& get_balance_money() const;
-  inline Time& get_time() const;
-  inline void add_record(const Record& record);
-  Record& get_record(const RecordOrder_type& order) const;
-  Record& get_last_record() const;
+  std::string get_name() const;
+  Money get_balance_money() const;
+  Time get_time() const;
+  Record get_record(const RecordOrder_type& order) const;
+  Record get_last_record() const;
 
-  inline void set_name(const std::string& name);
+  bool empty() const;
+
+  void add_record(const Record& record);
+  void set_name(const std::string& name);
 
   void list() const;
 
@@ -42,8 +45,7 @@ private:
   std::map<RecordOrder_type, Record> _records;
 
   void _set_balance_money();
-  inline void _set_time();
-  Entry(bool isEmpty);
+  void _set_time();
 };
 
 }  // namespace mw

@@ -35,11 +35,11 @@ Time::Time()
   oss.clear();
 }
 
-inline std::string& Time::get_date() const {
+std::string Time::get_date() const {
   return _dayMonthYearWeekday;
 }
 
-inline std::string& Time::get_time() const {
+std::string Time::get_time() const {
   return _hoursMinutesSeconds;
 }
 

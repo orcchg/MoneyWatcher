@@ -16,8 +16,8 @@ namespace mw {
 
 class Database {
 public:
-  inline void add_entry(const Entry& entry);
-  Entry& get_entry(const std::string& name) const;
+  void add_entry(const Entry& entry);
+  Entry get_entry(const std::string& name) const;
 
   void list() const;
 

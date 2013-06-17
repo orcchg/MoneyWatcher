@@ -26,17 +26,20 @@ public:
 		 const BalanceStatus& bs = BS_UNKNOWN,
 		 const std::string& comment = "",
 		 const Time& time = Time());
+  Record(bool isEmptry);
 
-  inline Money& get_money() const;
-  inline Time& get_time() const;
-  inline BalanceStatus& get_status() const;
-  inline std::string& get_comment() const;
-  inline RecordOrder_type& get_order() const;
+  Money get_money() const;
+  Time get_time() const;
+  BalanceStatus get_status() const;
+  std::string get_comment() const;
+  RecordOrder_type get_order() const;
 
-  inline void set_money(const Money& money);
-  inline void set_time(const Time& time);
-  inline void set_status(const BalanceStatus& bs);
-  inline void set_comment(const std::string& comment);
+  bool empty() const;
+
+  void set_money(const Money& money);
+  void set_time(const Time& time);
+  void set_status(const BalanceStatus& bs);
+  void set_comment(const std::string& comment);
 
 private:
   Money _money;
@@ -47,7 +50,6 @@ private:
   RecordOrder_type _order;
 
   RecordOrder_type _convert_time_to_order(const Time& time) const;
-  Record(bool isEmptry);
 };
 
 }  // namespace mw

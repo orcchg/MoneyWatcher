@@ -22,8 +22,8 @@ public:
   /// @note Date and Time cannot be changed after construction.
   Time();
 
-  inline std::string& get_date() const;
-  inline std::string& get_time() const;
+  std::string get_date() const;
+  std::string get_time() const;
 
   // --------------------------------------------
   class ExceptionTime {

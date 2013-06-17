@@ -11,11 +11,11 @@
 
 namespace mw {
 
-inline void Database::add_entry(const Entry& entry) {
+void Database::add_entry(const Entry& entry) {
   _database[entry.get_name()] = entry;
 }
 
-Entry& Database::get_entry(const std::string& name) const {
+Entry Database::get_entry(const std::string& name) const {
   auto it = _database.find(name);
   if (it != _database.end()) {
 	return it->second;

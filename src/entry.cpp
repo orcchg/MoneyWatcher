@@ -20,46 +20,53 @@ Entry::Entry(const std::string& name,
   , _isEmpty(false) {
 }
 
+Entry::Entry(bool isEmpty)
+  : _name("")
+  , _money(Money())
+  , _time(Time())
+  , _isEmpty(true) {
+}
+
 /* Getters */
 // ----------------------------------------------
-inline std::string& Entry::get_name() const {
+std::string Entry::get_name() const {
   return _name;
 }
 
-inline Money& Entry::get_balance_money() const {
+Money Entry::get_balance_money() const {
   return _money;
 }
 
-inline Time& Entry::get_time() const {
+Time Entry::get_time() const {
   return _time;
 }
 
-Record& Entry::get_record(const RecordOrder_type& order) const {
+Record Entry::get_record(const RecordOrder_type& order) const {
   auto it = _records.find(order);
   if (it != _records.end()) {
-	return it->second;
+	  return it->second;
   }
   return Record(true);  // empty Record
 }
 
-Record& Entry::get_last_record() const {
+Record Entry::get_last_record() const {
   if (!_records.empty()) {
-	return *(--_records.end());
+	  return (--_records.end())->second;
   }
   return Record(true);  // empty Record
 }
 
-inline bool Entry::empty() const {
+bool Entry::empty() const {
   return _isEmpty;
 }
 
 /* Setters */
 // ----------------------------------------------
-inline void Entry::add_record(const Record& record) {
+void Entry::add_record(const Record& record) {
   _records[record.get_order()] = record;
 }
 
-inline void Entry::set_name(const std::string& name) {
+void Entry::set_name(const std::string& name) {
   _name = name;
 }
 
@@ -74,28 +81,21 @@ void Entry::list() const {
 /* Private members */
 // --------------------------------------------------------------------------------------------------------------------
 void Entry::_set_balance_money() {
-  Record& record = get_last_record();
+  Record record = get_last_record();
   switch (record.get_status()) {
   case Record::BS_INCOME:
-	_money += record.get_money();
-	break;
+	  _money += record.get_money();
+	  break;
   case Record::BS_EXPENSE:
-	_money -= record.get_money();
-	break;
+	  _money -= record.get_money();
+	  break;
   default:
-	break;
+	  break;
   }
 }
 
-inline void Entry::_set_time() {
+void Entry::_set_time() {
   _time = get_last_record().get_time();
-}
-
-Entry::Entry(bool isEmpty)
-  : _name("")
-  , _money(Money())
-  , _time(Time())
-  , _isEmpty(true) {
 }
 
 }  // namespace mw
