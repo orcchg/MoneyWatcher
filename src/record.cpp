@@ -17,7 +17,8 @@ Record::Record(const Money& money = Money(),
   : _money(money)
   , _time(time)
   , _bs(bs)
-  , _comment(comment) {
+  , _comment(comment)
+  , _isEmpty(false) {
   _order = _convert_time_to_order(_time);
 }
 
@@ -62,6 +63,15 @@ inline void Record::set_comment(const std::string& comment) {
 RecordOrder_type _convert_time_to_order(const Time& time) const {
   //
   return RecordOrder_type();
+}
+
+Record::Record(bool isEmpty)
+  : _money(Money())
+  , _time(Time())
+  , _bs(BS_UNKNOWN)
+  , _comment("")
+  , _isEmpty(true)
+  , _order(RecordOrder_type()) {
 }
 
 }  // namespace mw

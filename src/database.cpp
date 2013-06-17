@@ -20,7 +20,7 @@ Entry& Database::get_entry(const std::string& name) const {
   if (it != _database.end()) {
 	return it->second;
   }
-  return _emptyEntry;
+  return Entry(true);  // empty Entry
 }
 
 void Database::list() const{

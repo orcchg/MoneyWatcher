@@ -23,8 +23,6 @@ public:
 
 private:
   std::map<std::string, Entry> _database;
-
-  static const Entry _emptyEntry = Entry();
 };
 
 }  // namespace mw

@@ -43,9 +43,11 @@ private:
   Time _time;
   BalanceStatus _bs;
   std::string _comment;
+  bool _isEmpty;
   RecordOrder_type _order;
 
   RecordOrder_type _convert_time_to_order(const Time& time) const;
+  Record(bool isEmptry);
 };
 
 }  // namespace mw

@@ -16,7 +16,8 @@ Entry::Entry(const std::string& name,
 		     const Time& time)
   : _name(name)
   , _money(money)
-  , _time(time) {
+  , _time(time)
+  , _isEmpty(false) {
 }
 
 inline std::string& Entry::get_name() const {
@@ -40,14 +41,14 @@ Record& Entry::get_record(const RecordOrder_type& order) const {
   if (it != _records.end()) {
 	return it->second;
   }
-  return _emptyRecord;
+  return Record(true);  // empty Record
 }
 
 Record& Entry::get_last_record() const {
   if (!_records.empty()) {
 	return *(--_records.end());
   }
-  return _emptyRecord;
+  return Record(true);  // empty Record
 }
 
 inline void Entry::set_name(const std::string& name) {
@@ -80,6 +81,13 @@ void Entry::_set_balance_money() {
 
 inline void Entry::_set_time() {
   _time = get_last_record().get_time();
+}
+
+Entry::Entry(bool isEmpty)
+  : _name("")
+  , _money(Money())
+  , _time(Time())
+  , _isEmpty(true) {
 }
 
 }  // namespace mw

@@ -38,12 +38,12 @@ private:
   std::string _name;
   Money _money;
   Time _time;
+  bool _isEmpty;
   std::map<RecordOrder_type, Record> _records;
 
   void _set_balance_money();
   inline void _set_time();
-
-  static const Record _emptyRecord = Record();
+  Entry(bool isEmpty);
 };
 
 }  // namespace mw
