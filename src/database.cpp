@@ -8,6 +8,7 @@
 #include <iostream>
 #include <utility>
 #include "include/database.h"
+#include "include/exception.h"
 
 
 namespace mw {
@@ -15,14 +16,28 @@ namespace mw {
 Database::~Database() {
 }
 
-void Database::add_entry(Entry* entry) {
-  _database.insert(std::pair<std::string, std::shared_ptr<Entry> >(entry->name(), std::shared_ptr<Entry>(entry)));
+void Database::add_entry(const std::string& name,
+                         const Money& money) {
+  std::shared_ptr<Entry> ptr(new Entry(name, money));
+  _database.insert(std::pair<std::string, std::shared_ptr<Entry> >(name, ptr));
 }
 
-Entry* Database::get_entry(const std::string& name) const {
+void Database::add_record(const std::string& entryName,
+                          const Money& money,
+                          const Record::BalanceStatus& bs,
+                          const std::string& comment) {
+  std::shared_ptr<Entry> ptr = get_entry(entryName);
+  if (ptr != NULL) {
+    ptr->add_record(money, bs, comment);
+  } else {
+    throw exception::Exception("No such entry \"" + entryName + "\".");
+  }
+}
+
+std::shared_ptr<Entry> Database::get_entry(const std::string& name) const {
   auto it = _database.find(name);
   if (it != _database.end()) {
-	return it->second.get();
+	  return it->second;
   }
   return NULL;  // empty Entry
 }

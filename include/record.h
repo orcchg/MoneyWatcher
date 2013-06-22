@@ -21,9 +21,9 @@ public:
   enum BalanceStatus { BS_UNKNOWN = -1, BS_INCOME = 0, BS_EXPENSE = 1 };
 
   Record(const Money& money = Money(),
-		 const BalanceStatus& bs = BS_UNKNOWN,
-		 const std::string& comment = "",
-		 const DateTime& datetime = DateTime());
+         const BalanceStatus& bs = BS_UNKNOWN,
+         const std::string& comment = "",
+         const DateTime& datetime = DateTime());
   Record(bool isEmptry);
 
   Money get_money() const;

@@ -9,12 +9,12 @@ AC_CANONICAL_HOST
 AC_CANONICAL_SYSTEM
 
 AC_CONFIG_HEADERS([config.h])
-AC_CONFIG_FILES([Makefile src/Makefile])
+AC_CONFIG_FILES([Makefile src/Makefile tests/Makefile])
 
 AC_GNU_SOURCE
 AC_C_BIGENDIAN
-AC_PROG_CXX
-AC_PROG_CC
+AC_PROG_CXX[g++-4.8]
+AC_PROG_CC[gcc-4.8]
 AC_HEADER_STDC
 AC_SUBST([AM_CXXFLAGS], [-std=c++11])
 
@@ -27,15 +27,15 @@ dnl This allows us specify individual liking flags for each target
 AM_PROG_CC_C_O
 
 dnl Check for GCC version
-AC_MSG_CHECKING([whether gcc version is >= 4.5.0])
+AC_MSG_CHECKING([whether gcc version is >= 4.8.1])
 AC_EGREP_CPP(passed, [
 #ifdef __GNUC__
-#if !(__GNUC__ < 4 || __GNUC_MINOR__ < 5 || __GNUC_PATCHLEVEL__ < 0)
+#if !(__GNUC__ < 4 || __GNUC_MINOR__ < 8 || __GNUC_PATCHLEVEL__ < 1)
 passed
 #endif
 #endif
 ], AC_MSG_RESULT([yes]), AC_MSG_RESULT([no])
-					     AC_MSG_ERROR([Building this project requires GCC >= 4.5.0]))
+					     AC_MSG_ERROR([Building this project requires GCC >= 4.8.1]))
 
 dnl Initialize Libtool
 LT_INIT
@@ -57,8 +57,7 @@ dnl Check for EFL libraries
 
 dnl Check for Boost
 AC_LANG_PUSH([C++])
-AC_CHECK_HEADERS([boost/foreach.hpp], [],
-    [AC_MSG_ERROR(You need the Boost libraries.)])
+AC_CHECK_HEADERS([boost/foreach.hpp], [], [AC_MSG_ERROR(You need the Boost libraries.)])
 AC_LANG_POP([C++])
 
 AC_OUTPUT

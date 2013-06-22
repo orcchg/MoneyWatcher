@@ -9,6 +9,7 @@
 #include <sstream>
 #include <boost/date_time/posix_time/posix_time.hpp>
 #include "include/datetime.h"
+#include "include/exception.h"
 
 
 namespace mw {
@@ -19,7 +20,7 @@ DateTime::DateTime()
   oss << _datetime.date().day() << " " << _datetime.date().month()
       << " " << _datetime.date().year() << " " << _datetime.date().day_of_week();
   if (!oss.good()) {
-	throw ExceptionTime("Error during date processing!");
+	throw exception::Exception("Error during date processing!");
   }
   _dayMonthYearWeekday = oss.str();
   oss.str("");
@@ -29,7 +30,7 @@ DateTime::DateTime()
       << _datetime.time_of_day().minutes() << ":"
       << _datetime.time_of_day().seconds();
   if (!oss.good()) {
-  	throw ExceptionTime("Error during time of day processing!");
+  	throw exception::Exception("Error during time of day processing!");
   }
   _hoursMinutesSeconds = oss.str();
   oss.str("");

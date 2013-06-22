@@ -19,8 +19,13 @@ class Database {
 public:
   virtual ~Database();
 
-  void add_entry(Entry* entry);
-  Entry* get_entry(const std::string& name) const;
+  void add_entry(const std::string& name = "",
+                 const Money& money = Money());
+  void add_record(const std::string& entryName = "",
+                  const Money& money = Money(),
+                  const Record::BalanceStatus& bs = Record::BS_UNKNOWN,
+                  const std::string& comment = "");
+  std::shared_ptr<Entry> get_entry(const std::string& name) const;
 
   size_t size() const;
 

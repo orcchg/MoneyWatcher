@@ -29,17 +29,6 @@ public:
   bool operator == (const DateTime& rhs) const;
   bool operator != (const DateTime& rhs) const;
 
-  // --------------------------------------------
-  class ExceptionTime {
-  public:
-    ExceptionTime(const std::string& msg)
-      : _msg(msg) {
-    }
-
-  private:
-    std::string _msg;
-  };
-
 private:
   boost::posix_time::ptime _datetime;
   std::string _dayMonthYearWeekday;

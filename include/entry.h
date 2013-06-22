@@ -21,8 +21,8 @@ namespace mw {
 class Entry {
 public:
   Entry(const std::string& name = "",
-		const Money& money = Money(),
-		const DateTime& datetime = DateTime());
+        const Money& money = Money(),
+        const DateTime& datetime = DateTime());
   Entry(bool isEmpty);
   virtual ~Entry();
 
@@ -35,7 +35,9 @@ public:
 
   bool empty() const;
 
-  void add_record(Record* record);
+  void add_record(const Money& money = Money(),
+                  const Record::BalanceStatus& bs = Record::BS_UNKNOWN,
+                  const std::string& comment = "");
   void set_name(const std::string& name);
 
   void list() const;

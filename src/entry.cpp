@@ -70,8 +70,11 @@ bool Entry::empty() const {
 
 /* Setters */
 // ----------------------------------------------
-void Entry::add_record(Record* record) {
-  _records.insert(std::pair<DateTime, std::shared_ptr<Record> >(record->get_datetime(), std::shared_ptr<Record>(record)));
+void Entry::add_record(const Money& money,
+                       const Record::BalanceStatus& bs,
+                       const std::string& comment) {
+  std::shared_ptr<Record> ptr(new Record(money, bs, comment));
+  _records.insert(std::pair<DateTime, std::shared_ptr<Record> >(ptr->get_datetime(), ptr));
 }
 
 void Entry::set_name(const std::string& name) {
