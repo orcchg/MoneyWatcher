@@ -32,6 +32,7 @@ public:
   void list() const;
 
 private:
+  Policy _policy;
   std::map<std::string, std::shared_ptr<Entry> > _database;
 };
 
