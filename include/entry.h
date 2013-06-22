@@ -29,8 +29,8 @@ public:
   std::string name() const;
   Money get_balance_money() const;
   DateTime get_datetime() const;
-  Record* get_record(const DateTime& datetime) const;
-  Record* get_last_record() const;
+  std::shared_ptr<Record> get_record(const DateTime& datetime) const;
+  std::shared_ptr<Record> get_last_record() const;
   size_t size() const;
 
   bool empty() const;

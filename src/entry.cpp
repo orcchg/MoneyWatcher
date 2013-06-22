@@ -45,17 +45,17 @@ DateTime Entry::get_datetime() const {
   return _datetime;
 }
 
-Record* Entry::get_record(const DateTime& datetime) const {
+std::shared_ptr<Record> Entry::get_record(const DateTime& datetime) const {
   auto it = _records.find(datetime);
   if (it != _records.end()) {
-	  return it->second.get();
+	  return it->second;
   }
   return NULL;  // empty Record
 }
 
-Record* Entry::get_last_record() const {
+std::shared_ptr<Record> Entry::get_last_record() const {
   if (!_records.empty()) {
-	  return (--_records.end())->second.get();
+	  return (--_records.end())->second;
   }
   return NULL;  // empty Record
 }
