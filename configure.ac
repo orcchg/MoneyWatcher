@@ -56,6 +56,9 @@ dnl Check for EFL libraries
 #PKG_CHECK_MODULES([ELEMENTARY], [elementary >= 1.0])
 
 dnl Check for Boost
-#PKG_CHECK_MODULES([BOOST], [boost >= 1.53.0])
+AC_LANG_PUSH([C++])
+AC_CHECK_HEADERS([boost/foreach.hpp], [],
+    [AC_MSG_ERROR(You need the Boost libraries.)])
+AC_LANG_POP([C++])
 
 AC_OUTPUT
