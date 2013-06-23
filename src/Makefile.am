@@ -5,3 +5,4 @@ moneywatcher_SOURCES = main.cpp money.cpp datetime.cpp cycle.cpp database.cpp en
 clean:
 	rm Makefile
 	rm ${bin_PROGRAMS}
+	rm *.o
