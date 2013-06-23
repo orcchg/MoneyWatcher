@@ -13,6 +13,7 @@
 #include <string>
 #include "include/database.h"
 #include "include/datetime.h"
+#include "include/policy.h"
 
 
 namespace mw {
@@ -21,6 +22,7 @@ struct Page {
   std::string name;
   DateTime datetime;
   std::shared_ptr<Database> db;
+  Policy policy;
 };
 
 class Cycle {
