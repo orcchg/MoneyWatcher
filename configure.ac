@@ -9,7 +9,7 @@ AC_CANONICAL_HOST
 AC_CANONICAL_SYSTEM
 
 AC_CONFIG_HEADERS([config.h])
-AC_CONFIG_FILES([Makefile src/Makefile tests/Makefile])
+AC_CONFIG_FILES([Makefile src/Makefile])
 
 AC_GNU_SOURCE
 AC_C_BIGENDIAN
