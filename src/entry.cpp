@@ -93,7 +93,7 @@ void Entry::list() const {
 /* Private members */
 // --------------------------------------------------------------------------------------------------------------------
 void Entry::_set_balance_money() {
-  Record* record = get_last_record();
+  std::shared_ptr<Record> record = get_last_record();
   switch (record->get_status()) {
   case Record::BS_INCOME:
 	  _money += record->get_money();
