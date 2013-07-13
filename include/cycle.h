@@ -41,9 +41,12 @@ private:
 
     const std::shared_ptr<Database>& get_database() const;
 
+    /// @defgroup COMP Compare two pages.
+    /// @{
     bool operator < (const Page& rhs) const;
     bool operator == (const Page& rhs) const;
     bool operator != (const Page& rhs) const;
+    /// @}
   };
 
   std::list<std::shared_ptr<Page> > _pages;

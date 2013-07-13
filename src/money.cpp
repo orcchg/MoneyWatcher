@@ -15,7 +15,7 @@ Money::Money(const Money_type& value)
   : _value(value) {
 }
 
-inline Money_type Money::get() const {
+inline const Money_type& Money::get() const {
   return _value;
 }
 

@@ -33,19 +33,19 @@ Entry::~Entry() {
 
 /* Getters */
 // ----------------------------------------------
-std::string Entry::name() const {
+const std::string& Entry::name() const {
   return _name;
 }
 
-Money Entry::get_balance_money() const {
+const Money& Entry::get_balance_money() const {
   return _money;
 }
 
-DateTime Entry::get_datetime() const {
+const DateTime& Entry::get_datetime() const {
   return _datetime;
 }
 
-std::shared_ptr<Record> Entry::get_record(const DateTime& datetime) const {
+const std::shared_ptr<Record>& Entry::get_record(const DateTime& datetime) const {
   auto it = _records.find(datetime);
   if (it != _records.end()) {
 	  return it->second;
@@ -53,7 +53,7 @@ std::shared_ptr<Record> Entry::get_record(const DateTime& datetime) const {
   return NULL;  // empty Record
 }
 
-std::shared_ptr<Record> Entry::get_last_record() const {
+const std::shared_ptr<Record>& Entry::get_last_record() const {
   if (!_records.empty()) {
 	  return (--_records.end())->second;
   }

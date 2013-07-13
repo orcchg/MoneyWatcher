@@ -20,7 +20,7 @@ class Money {
 public:
   Money(const Money_type& value = Money_type());
 
-  inline Money_type get() const;
+  inline const Money_type& get() const;
   friend std::ostream& operator << (std::ostream& out, const Money& rhs);
 
   Money& operator +=(const Money& rhs);

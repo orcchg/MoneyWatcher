@@ -34,7 +34,7 @@ void Database::add_record(const std::string& entryName,
   }
 }
 
-std::shared_ptr<Entry> Database::get_entry(const std::string& name) const {
+const std::shared_ptr<Entry>& Database::get_entry(const std::string& name) const {
   auto it = _database.find(name);
   if (it != _database.end()) {
 	  return it->second;

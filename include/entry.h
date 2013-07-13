@@ -26,11 +26,12 @@ public:
   Entry(bool isEmpty);
   virtual ~Entry();
 
-  std::string name() const;
-  Money get_balance_money() const;
-  DateTime get_datetime() const;
-  std::shared_ptr<Record> get_record(const DateTime& datetime) const;
-  std::shared_ptr<Record> get_last_record() const;
+  const std::string& name() const;
+  const Money& get_balance_money() const;
+  const DateTime& get_datetime() const;
+  const std::shared_ptr<Record>& get_record(const DateTime& datetime) const;
+  const std::shared_ptr<Record>& get_last_record() const;
+
   size_t size() const;
 
   bool empty() const;
