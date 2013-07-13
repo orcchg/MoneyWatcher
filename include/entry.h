@@ -39,6 +39,7 @@ public:
   void add_record(const Money& money = Money(),
                   const Record::BalanceStatus& bs = Record::BS_UNKNOWN,
                   const std::string& comment = "");
+
   void set_name(const std::string& name);
 
   void list() const;
