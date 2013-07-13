@@ -31,19 +31,19 @@ Record::Record(bool isEmpty)
 
 /* Getters */
 // ----------------------------------------------
-Money Record::get_money() const {
+const Money& Record::get_money() const {
   return _money;
 }
 
-DateTime Record::get_datetime() const {
+const DateTime& Record::get_datetime() const {
   return _datetime;
 }
 
-Record::BalanceStatus Record::get_status() const {
+const Record::BalanceStatus& Record::get_status() const {
   return _bs;
 }
 
-std::string Record::get_comment() const {
+const std::string& Record::get_comment() const {
   return _comment;
 }
 

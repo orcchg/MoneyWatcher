@@ -26,10 +26,10 @@ public:
          const DateTime& datetime = DateTime());
   Record(bool isEmptry);
 
-  Money get_money() const;
-  DateTime get_datetime() const;
-  BalanceStatus get_status() const;
-  std::string get_comment() const;
+  const Money& get_money() const;
+  const DateTime& get_datetime() const;
+  const BalanceStatus& get_status() const;
+  const std::string& get_comment() const;
 
   bool empty() const;
 
