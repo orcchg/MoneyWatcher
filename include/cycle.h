@@ -26,7 +26,7 @@ public:
 
   void add_page(const std::string& name = "");
 
-  std::shared_ptr<Database> get_last_database() const;
+  const std::shared_ptr<Database>& get_last_database() const;
 
   void history() const;
 
@@ -39,7 +39,7 @@ private:
 
     Page(const std::string& name, const DateTime& datetime = DateTime());
 
-    std::shared_ptr<Database> get_database() const;
+    const std::shared_ptr<Database>& get_database() const;
 
     bool operator < (const Page& rhs) const;
     bool operator == (const Page& rhs) const;

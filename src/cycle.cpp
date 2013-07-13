@@ -19,7 +19,7 @@ void Cycle::add_page(const std::string& name) {
   _pages.sort(&_compare_pages);
 }
 
-std::shared_ptr<Database> Cycle::get_last_database() const {
+const std::shared_ptr<Database>& Cycle::get_last_database() const {
   return _pages.back()->get_database();
 }
 
@@ -36,7 +36,7 @@ Cycle::Page::Page(const std::string& name, const DateTime& datetime)
   , policy(Policy()) {
 }
 
-std::shared_ptr<Database> Cycle::Page::get_database() const {
+const std::shared_ptr<Database>& Cycle::Page::get_database() const {
   return db;
 }
 
