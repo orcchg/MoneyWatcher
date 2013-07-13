@@ -18,20 +18,32 @@
 
 namespace mw {
 
-struct Page {
-  std::string name;
-  DateTime datetime;
-  std::shared_ptr<Database> db;
-  Policy policy;
-};
-
 class Cycle {
 public:
+  virtual ~Cycle();
+
+  void add_page(const std::string& name = "");
+
   void history() const;
 
 private:
-  std::list<Page> _pages;
-  std::list<Page>::iterator _currentPage;
+  struct Page {
+    std::string name;
+    DateTime datetime;
+    std::shared_ptr<Database> db;
+    Policy policy;
+
+    Page(const std::string& name, const DateTime& datetime = DateTime());
+
+    bool operator < (const Page& rhs) const;
+    bool operator == (const Page& rhs) const;
+    bool operator != (const Page& rhs) const;
+  };
+
+  std::list<std::shared_ptr<Page> > _pages;
+  std::list<std::shared_ptr<Page> >::iterator _currentPage;
+
+  static bool _compare_pages(const std::shared_ptr<Page>& first, const std::shared_ptr<Page>& second);
 };
 
 }  // namespace mw

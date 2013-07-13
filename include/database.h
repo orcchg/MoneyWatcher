@@ -25,6 +25,7 @@ public:
                   const Money& money = Money(),
                   const Record::BalanceStatus& bs = Record::BS_UNKNOWN,
                   const std::string& comment = "");
+
   std::shared_ptr<Entry> get_entry(const std::string& name) const;
 
   size_t size() const;

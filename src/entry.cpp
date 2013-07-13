@@ -91,7 +91,7 @@ void Entry::list() const {
 }
 
 /* Private members */
-// --------------------------------------------------------------------------------------------------------------------
+// ----------------------------------------------------------------------------
 void Entry::_set_balance_money() {
   std::shared_ptr<Record> record = get_last_record();
   switch (record->get_status()) {
